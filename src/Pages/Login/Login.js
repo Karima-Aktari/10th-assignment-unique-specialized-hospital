@@ -22,6 +22,7 @@ const Login = () => {
                     <input className="mt-3 w-50 btn btn-success m-auto" type="submit" value="Register" />
                 </form>
                 <br />
+                <p>New to Our Site <Link to="/register"></Link>Register</p>
                 <div>------------------------------</div>
                 <br />
                 {<button onClick={signInUsingGoogle} className="btn btn-warning">Google SignIn</button>}
