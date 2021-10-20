@@ -12,17 +12,13 @@ const useFirebase = () => {
     const [user, setUser] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLogin, setIsLogin] = useState(false);
     const [error, setError] = useState('');
+    const [displayName, setDisplayName] = useState('');
     const auth = getAuth();
 
     const signInUsingGoogle = () => {
         const googleProvider = new GoogleAuthProvider();
         return signInWithPopup(auth, googleProvider);
-        // .then((result) => {
-        //     console.log(result.user);
-        //     setUser(result.user);
-        // });
     }
 
     const logOut = () => {
@@ -42,6 +38,11 @@ const useFirebase = () => {
     }, []);
 
     //Email & Password Authentication//
+    const handleNameChange = (e) => {
+        setDisplayName(e.target.value)
+    }
+
+
     const handleEmailChange = e => {
         setEmail(e.target.value);
         console.log(e.target.value);
@@ -68,7 +69,6 @@ const useFirebase = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user);
-                setIsLogin(user);
                 setError('');
                 console.log(result.user);
             })
@@ -82,6 +82,7 @@ const useFirebase = () => {
             .then(result => {
                 const user = result.user;
                 setUser(user);
+                setUserName();
                 setError('');
                 console.log(email, password);
             })
@@ -89,12 +90,14 @@ const useFirebase = () => {
                 setError(error.message);
             });
     }
-    // const setUserName = () => {
-    //     updateProfile (auth.currentUser, displayName)
-    //       .then(result => {
-    // const {name, email, p}
-    //       })
-    //   }
+
+    const setUserName = () => {
+        updateProfile(auth.currentUser, { displayName })
+            .then(result => {
+
+            })
+    }
+
 
     return {
         user,
@@ -105,6 +108,7 @@ const useFirebase = () => {
         handlePasswordChange,
         handleRegistration,
         processEmailLogin,
+        handleNameChange,
     }
 }
 export default useFirebase;

@@ -7,7 +7,7 @@ import useAuth from '../../hooks/useAuth';
 
 const Login = () => {
 
-    const { user,
+    const { handleNameChange, user,
         processEmailLogin,
         signInUsingGoogle } = useAuth();
     const [email, setEmail] = useState('');
@@ -37,13 +37,14 @@ const Login = () => {
     }
 
 
-
     return (
         <div className="row py-4 mx-auto">
             <div className="col-md-6 col-12 pt-4">
                 <h1>{user.email}</h1>
                 <form onSubmit={handleSignIn}>
                     <h1 className="text-info p-4">Login Your Account</h1>
+                    <input className="px-4 py-1 rounded-pill" onChange={handleNameChange} type="text" name="name" placeholder="Your Name" />
+                    <br /><br />
                     <input className="px-4 py-1 rounded-pill" onChange={handleEmailChange} type="email" name="email" placeholder="Enter Your Email" required />
                     <br /><br />
                     <input className="px-4 py-1 rounded-pill" onBlur={handlePasswordChange} type="password" name="Password" placeholder="Enter Your Password" id="" required />

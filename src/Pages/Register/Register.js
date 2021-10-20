@@ -1,18 +1,20 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const Register = () => {
-    const { error, user, handleEmailChange,
+    const { handleNameChange, error, user, handleEmailChange,
         handlePasswordChange,
         handleRegistration,
     } = useAuth();
+
     return (
         <div>
             <div className="py-4">
                 <h1>{user.email}</h1>
                 <form onSubmit={handleRegistration}>
                     <h1 className="text-info p-4">Register Your Account</h1>
+                    <input onBlur={handleNameChange} className="px-4 py-1 rounded-pill" type="text" name="name" placeholder="Your Name" />
+                    <br /><br />
                     <input onChange={handleEmailChange} className="px-4 py-1 rounded-pill" type="email" name="email" placeholder="Enter Your Email" required />
                     <br /><br />
                     <input onBlur={handlePasswordChange} className="px-4 py-1 rounded-pill" type="password" name="Password" placeholder="Enter Your Password" id="" required />
