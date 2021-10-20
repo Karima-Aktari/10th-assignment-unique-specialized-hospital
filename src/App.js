@@ -10,6 +10,7 @@ import ServiceDetails from './Pages/Home/ServiceDetails/ServiceDetails';
 import Specialists from './Pages/Home/Specialists/Specialists';
 import AuthProvider from './Context/AuthProvider';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import Register from './Pages/Register/Register';
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>
@@ -50,3 +54,5 @@ function App() {
 }
 
 export default App;
+
+
