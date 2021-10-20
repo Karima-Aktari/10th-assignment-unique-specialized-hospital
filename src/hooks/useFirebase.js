@@ -84,6 +84,7 @@ const useFirebase = () => {
                 setUser(user);
                 setUserName();
                 setError('');
+                window.location.reload();
                 console.log(email, password);
             })
             .catch((error) => {

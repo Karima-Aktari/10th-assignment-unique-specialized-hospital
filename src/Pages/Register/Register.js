@@ -7,6 +7,11 @@ const Register = () => {
         handleRegistration,
     } = useAuth();
 
+    // const handleReload = () => {
+    //     window.location.reload();
+    //     handleRegistration();
+    // }
+
     return (
         <div>
             <div className="py-4">
