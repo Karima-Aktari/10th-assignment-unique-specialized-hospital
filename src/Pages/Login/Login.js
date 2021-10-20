@@ -1,14 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 // import useFirebase from '../../hooks/useFirebase';
 
 const Login = () => {
-    const { error, user, handleEmailChange,
-        handlePasswordChange,
+
+    const { user,
         processEmailLogin,
         signInUsingGoogle } = useAuth();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const location = useLocation();
     const history = useHistory();
 
@@ -20,12 +23,26 @@ const Login = () => {
                 history.push(redirect_uri)
             })
     }
-    console.log(processEmailLogin());
+    const handleEmailChange = e => {
+        setEmail(e.target.value);
+        console.log(e.target.value);
+    }
+    const handlePasswordChange = e => {
+        setPassword(e.target.value);
+    }
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        processEmailLogin(email, password);
+    }
+
+
+
     return (
         <div className="row py-4 mx-auto">
             <div className="col-md-6 col-12 pt-4">
                 <h1>{user.email}</h1>
-                <form onSubmit={processEmailLogin}>
+                <form onSubmit={handleSignIn}>
                     <h1 className="text-info p-4">Login Your Account</h1>
                     <input className="px-4 py-1 rounded-pill" onChange={handleEmailChange} type="email" name="email" placeholder="Enter Your Email" required />
                     <br /><br />
@@ -34,8 +51,6 @@ const Login = () => {
                     <input className="mt-3 w-50 btn btn-success m-auto" type="submit" value="Login" />
                 </form>
                 <br />
-                <p onClick={processEmailLogin}>Email</p>
-                <h3 className="text-danger">{error}</h3>
                 <br />
                 <p>New to Our Site ? <Link to="/register">Sign Up</Link></p>
                 <div>------------------------------</div>
