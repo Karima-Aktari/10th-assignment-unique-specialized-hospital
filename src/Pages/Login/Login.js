@@ -23,6 +23,8 @@ const Login = () => {
                 history.push(redirect_uri)
             })
     }
+
+
     const handleEmailChange = e => {
         setEmail(e.target.value);
         console.log(e.target.value);
